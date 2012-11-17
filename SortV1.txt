@@ -1,0 +1,80 @@
+//SortV1()
+template <typename TData> void LinkedList<TData>::SortV1(SortOrder SortBy){
+	if (SortBy == Unordered){
+		return;
+	}
+	if (_firstNode == NULL){		//Zero Items?
+		return;
+	}
+	if (_firstNode -> Next() == NULL){		//1 Item?
+		return;
+	}
+	int length = Length();
+	ListNode<TData> *previous, *current, *next;
+	bool swapped;
+	for (int i = 0; i < length; i++){
+		swapped = false;
+		previous = NULL;
+		current = _firstNode;
+		//By the ith time the list is traversed, the last i items will already be in place.
+		//So we don't have to traverse the whole list again.
+		for (int j = 0; j < length-i-1; j++){			
+			next = current -> Next();
+			if (next == NULL){		//With the length-i-1 check above, this should not occur. But written here, just in case.
+				break;
+			}
+			if ( 
+				(SortBy == Ascending && ((int) current->Data() > (int) next->Data()))
+				||
+				(SortBy == Descending && ((int) current->Data() < (int) next->Data()))
+				){
+				//Swap
+				swapped = true;
+				if (current == _firstNode){
+					_firstNode = next;
+				}
+				else{
+					previous -> SetNext(next);
+				}
+				if (next -> Next() == NULL){
+					//End of the list reached
+					current -> SetNext(NULL);
+				}
+				else{
+					current -> SetNext(next -> Next());
+				}
+				//After swapping, keep the current pointer pointing to the same node. Then check values of this node and the new Next node
+
+				previous = next;
+				next -> SetNext(current);
+			}
+			else{
+				previous = current;
+				current = current -> Next();
+			}
+			if (current == NULL){
+				break;		//With the length-i-1 check above, this should not occur. But written here, just in case.
+			}
+		}
+
+		/*
+			Debugging Purposes
+		*/
+		//current = _firstNode;
+		//for (int j = 0; j < length; j++){
+		//	cout << (int) current->Data() << " ";
+		//	current = current -> Next();
+		//}
+		//cout <<  "Length: " << length << " i: " << i <<endl;
+		
+		/*
+			End debugging
+		*/
+
+		if (swapped == false){
+			break;
+		}
+	}
+	_SortStatus = SortBy;
+	Rewind();
+}

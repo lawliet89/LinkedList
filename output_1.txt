@@ -1,0 +1,56 @@
+John
+10
+Bill
+23
+Alex
+43
+Costas
+3
+Costas
+3
+John
+10
+Bill
+23
+Alex
+43
+Costas
+3
+John
+10
+Bill
+23
+Alex
+43
+john
+45
+Bill
+50
+Maximum Value: 50
+Average Value: 29
+Bill
+50
+john
+45
+Alex
+43
+Bill
+23
+John
+10
+Costas
+3
+Maximum Value: 50
+Average Value: 29
+john
+45
+Alex
+43
+Bill
+23
+John
+10
+Costas
+3
+Maximum Value: 45
+Average Value: 24.8
